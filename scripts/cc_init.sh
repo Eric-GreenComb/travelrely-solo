@@ -4,7 +4,7 @@ curl -s -X POST \
   http://localhost:4000/channels/mychannel/chaincodes \
   -H "content-type: application/json" \
   -d "{
-	\"chaincodeName\":\"ticket\",
+	\"chaincodeName\":\"msisdn\",
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"golang\",
 	\"args\":[\"\"],

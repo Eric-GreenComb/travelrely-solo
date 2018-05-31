@@ -25,43 +25,43 @@ import (
 
 var logger = shim.NewLogger("ticket_cc")
 
-// TicketChaincode ticket Chaincode implementation
-type TicketChaincode struct {
+// MsisdnChaincode msisdn Chaincode implementation
+type MsisdnChaincode struct {
 }
 
 // Init Init
-func (t *TicketChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
-	logger.Info("########### ticket_cc Init ###########")
+func (t *MsisdnChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
+	logger.Info("########### MsisdnChaincode Init ###########")
 
 	return shim.Success(nil)
 
 }
 
 // Invoke Transaction
-func (t *TicketChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
-	logger.Info("########### ticket_cc Invoke ###########")
+func (t *MsisdnChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
+	logger.Info("########### MsisdnChaincode Invoke ###########")
 
 	function, args := stub.GetFunctionAndParameters()
 
-	if function == "createObj" {
-		// create obj : uuid(type_version_id),obj(base64)
-		return t.createObj(stub, args)
+	if function == "subscribe" {
+		// subscribe : msisdn,asset_id,eki2,bcuser_id,bcuser_key
+		return t.subscribe(stub, args)
 	}
-	if function == "updateObj" {
-		// update obj : uuid(type_version_id),obj(base64)
-		return t.updateObj(stub, args)
+	if function == "unsubscribe" {
+		// unsubscribe : msisdn,asset_id,bcuser_id,bcuser_key
+		return t.unsubscribe(stub, args)
 	}
-	if function == "queryObj" {
-		// query obj : uuid(type_version_id)
-		return t.queryObj(stub, args)
+	if function == "msisdn_state" {
+		// msisdn_state : msisdn
+		return t.msisdnState(stub, args)
 	}
-	if function == "queryObjs" {
-		// queries an entity state
-		return t.queryObjs(stub, args)
+	if function == "get_msisdn_history" {
+		// get_msisdn_history : msisdn
+		return t.getMsisdnHistory(stub, args)
 	}
-	if function == "getObjHistory" {
-		// get an obj's history
-		return t.getObjHistory(stub, args)
+	if function == "asset_info" {
+		// asset_info : asset_id
+		return t.assetInfo(stub, args)
 	}
 
 	logger.Errorf("Unknown action, got: %v", function)
@@ -69,7 +69,7 @@ func (t *TicketChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 }
 
 func main() {
-	err := shim.Start(new(TicketChaincode))
+	err := shim.Start(new(MsisdnChaincode))
 	if err != nil {
 		logger.Errorf("Error starting Simple chaincode: %s", err)
 	}

@@ -8,8 +8,8 @@ curl -s -X POST \
   -H "content-type: application/json" \
   -d "{
 	\"peers\": [\"peer0.org1.example.com\",\"peer1.org1.example.com\"],
-	\"chaincodeName\":\"ticket\",
-	\"chaincodePath\":\"github.com/ticket_cc\",
+	\"chaincodeName\":\"msisdn\",
+	\"chaincodePath\":\"github.com/msisdn\",
 	\"chaincodeType\": \"golang\",
 	\"chaincodeVersion\":\"v0\",
   \"username\":\"admin\",
@@ -25,8 +25,8 @@ curl -s -X POST \
   -H "content-type: application/json" \
   -d "{
 	\"peers\": [\"peer0.org2.example.com\",\"peer1.org2.example.com\"],
-	\"chaincodeName\":\"ticket\",
-	\"chaincodePath\":\"github.com/ticket_cc\",
+	\"chaincodeName\":\"msisdn\",
+	\"chaincodePath\":\"github.com/msisdn\",
 	\"chaincodeType\": \"golang\",
 	\"chaincodeVersion\":\"v0\",
   \"username\":\"admin\",

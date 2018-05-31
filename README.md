@@ -36,9 +36,11 @@ cd scripts
 
 ## 第四步 运行测试数据
 
-./cc_obj_create.sh
+./cc_obj_subscribe.sh
 
 ./cc_obj_query.sh
+
+./cc_obj_unsubscribe.sh
 
 ## 删除网络
 
