@@ -468,3 +468,16 @@ app.get('/channels', async function (req, res) {
 	let message = await query.getChannels(peer, username, orgname);
 	res.send(message);
 });
+
+// Query for Channel Height
+// http://localhost:4000/channels/mychannel/height?peer=peer0.org1.example.com&username=admin&orgname=Org1
+app.get('/channels/:channelName/height', async function (req, res) {
+	logger.debug('================ GET CHANNEL INFORMATION ======================');
+	logger.debug('channelName : ' + req.params.channelName);
+	let peer = req.query.peer;
+	let username = req.query.username;
+	let orgname = req.query.orgname;
+
+	let message = await query.getChainInfo(peer, req.params.channelName, username, orgname);
+	res.send(message.height.low.toString());
+});

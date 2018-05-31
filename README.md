@@ -64,25 +64,6 @@ cd script
 
     [http://localhost:4000/health](http://localhost:4000/health)
 
-2. Query Get Block by BlockNumber
+2. Query for Channel Height
 
-    [http://localhost:4000/channels/mychannel/blocks/4?peer=peer1&username=admin&orgname=org1](http://localhost:4000/channels/mychannel/blocks/4?peer=peer1&username=admin&orgname=org1)
-
-3. Query Get Transaction by Transaction ID
-    [http://localhost:4000/channels/mychannel/transactions/eb0fb438d4dc6a90095b78f66f2f5766c88a18eac88faa55ea38260256fb83ed?peer=peer1&username=admin&orgname=org1](http://localhost:4000/channels/mychannel/transactions/eb0fb438d4dc6a90095b78f66f2f5766c88a18eac88faa55ea38260256fb83ed?peer=peer1&username=admin&orgname=org1)
-
-4. Query to fetch all Installed/instantiated chaincodes
-
-    [http://localhost:4000/chaincodes?peer=peer1&username=Jim&orgname=org1&type=installed&channel=mychannel1](http://localhost:4000/chaincodes?peer=peer1&username=Jim&orgname=org1&type=installed&channel=mychannel1)
-
-5. Query to fetch channels
-
-    [http://localhost:4000/channels?peer=peer1&username=Jim&orgname=org1](http://localhost:4000/channels?peer=peer1&username=Jim&orgname=org1)
-
-6. Query for Channel Information
-
-    [http://localhost:4000/channels/mychannel1?peer=peer1&username=Jim&orgname=org1](http://localhost:4000/channels/mychannel1?peer=peer1&username=Jim&orgname=org1)
-
-7. Query for Channel Height
-
-    [http://localhost:4000/channels/mychannel1/height?peer=peer1&username=Jim&orgname=org1](http://localhost:4000/channels/mychannel1/height?peer=peer1&username=Jim&orgname=org1)
+    http://localhost:4000/channels/mychannel/height?peer=peer0.org1.example.com&username=admin&orgname=Org1
