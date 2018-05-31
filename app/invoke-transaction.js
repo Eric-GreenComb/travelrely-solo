@@ -57,12 +57,21 @@ var invokeChaincode = async function (peerNames, channelName, chaincodeName, fcn
 		var proposalResponses = results[0];
 		var proposal = results[1];
 
+		logger.debug(util.format('================== : %j', proposalResponses));
+
 		// lets have a look at the responses to see if they are
 		// all good, if good they will also include signatures
 		// required to be committed
 		var all_good = true;
 		for (var i in proposalResponses) {
 			let one_good = false;
+
+			logger.info("==================");
+			if (proposalResponses[i].toString().indexOf("cc_error") > 0) {
+				logger.info(proposalResponses[i].details);
+				return proposalResponses[i].details;
+			}
+
 			if (proposalResponses && proposalResponses[i].response &&
 				proposalResponses[i].response.status === 200) {
 				one_good = true;

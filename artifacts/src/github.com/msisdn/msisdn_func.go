@@ -13,11 +13,11 @@ import (
 func (t *MsisdnChaincode) subscribe(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 
 	if len(args) != 5 {
-		jsonResp := "{\"error\":\"Incorrect number of arguments\"}"
+		jsonResp := "{\"cc_error\":\"Incorrect number of arguments\"}"
 		return shim.Error(jsonResp)
 	}
 	if args[0] == "" || args[1] == "" || args[2] == "" || args[3] == "" || args[4] == "" {
-		jsonResp := "{\"error\":\"Arguments is nil\"}"
+		jsonResp := "{\"cc_error\":\"Arguments is nil\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -33,11 +33,11 @@ func (t *MsisdnChaincode) subscribe(stub shim.ChaincodeStubInterface, args []str
 		var _msisdn Msisdn
 		err = json.Unmarshal(_avalBytes, &_msisdn)
 		if err != nil {
-			jsonResp := "{\"error\":\"msisdn json error\"}"
+			jsonResp := "{\"cc_error\":\"msisdn json cc_error\"}"
 			return shim.Error(jsonResp)
 		}
 		if _msisdn.Status == 1 {
-			jsonResp := "{\"error\":\"msisdn has subscribe\"}"
+			jsonResp := "{\"cc_error\":\"msisdn has subscribe\"}"
 			return shim.Error(jsonResp)
 		}
 	}
@@ -53,7 +53,7 @@ func (t *MsisdnChaincode) subscribe(stub shim.ChaincodeStubInterface, args []str
 
 	err = stub.PutState(_keyM, _bytesM)
 	if err != nil {
-		jsonResp := "{\"error\":\"PutState error\"}"
+		jsonResp := "{\"cc_error\":\"PutState cc_error\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -67,7 +67,7 @@ func (t *MsisdnChaincode) subscribe(stub shim.ChaincodeStubInterface, args []str
 	_keyA := t.generateAssetKey(assetID)
 	err = stub.PutState(_keyA, _bytesA)
 	if err != nil {
-		jsonResp := "{\"error\":\"PutState error\"}"
+		jsonResp := "{\"cc_error\":\"PutState cc_error\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -78,11 +78,11 @@ func (t *MsisdnChaincode) unsubscribe(stub shim.ChaincodeStubInterface, args []s
 	// must be an invoke
 
 	if len(args) != 4 {
-		jsonResp := "{\"error\":\"Incorrect number of arguments\"}"
+		jsonResp := "{\"cc_error\":\"Incorrect number of arguments\"}"
 		return shim.Error(jsonResp)
 	}
 	if args[0] == "" || args[1] == "" || args[2] == "" || args[3] == "" {
-		jsonResp := "{\"error\":\"Arguments is nil\"}"
+		jsonResp := "{\"cc_error\":\"Arguments is nil\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -96,17 +96,17 @@ func (t *MsisdnChaincode) unsubscribe(stub shim.ChaincodeStubInterface, args []s
 	// Get the state from the ledger
 	_avalBytes, err := stub.GetState(_keyM)
 	if err != nil || _avalBytes == nil {
-		jsonResp := "{\"error\":\"msisdn is null\"}"
+		jsonResp := "{\"cc_error\":\"msisdn is null\"}"
 		return shim.Error(jsonResp)
 	}
 	var _msisdn Msisdn
 	err = json.Unmarshal(_avalBytes, &_msisdn)
 	if err != nil {
-		jsonResp := "{\"error\":\"msisdn json error\"}"
+		jsonResp := "{\"cc_error\":\"msisdn json cc_error\"}"
 		return shim.Error(jsonResp)
 	}
 	if _msisdn.Status != 1 {
-		jsonResp := "{\"error\":\"msisdn hasn't subscribe\"}"
+		jsonResp := "{\"cc_error\":\"msisdn hasn't subscribe\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -120,7 +120,7 @@ func (t *MsisdnChaincode) unsubscribe(stub shim.ChaincodeStubInterface, args []s
 	_bytesM, err := json.Marshal(_Msisdn)
 	err = stub.PutState(_keyM, _bytesM)
 	if err != nil {
-		jsonResp := "{\"error\":\"PutState error\"}"
+		jsonResp := "{\"cc_error\":\"PutState cc_error\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -134,7 +134,7 @@ func (t *MsisdnChaincode) unsubscribe(stub shim.ChaincodeStubInterface, args []s
 	_keyA := t.generateAssetKey(msisdn)
 	err = stub.PutState(_keyA, _bytesA)
 	if err != nil {
-		jsonResp := "{\"error\":\"PutState error\"}"
+		jsonResp := "{\"cc_error\":\"PutState cc_error\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -147,11 +147,11 @@ func (t *MsisdnChaincode) msisdnState(stub shim.ChaincodeStubInterface, args []s
 	var err error
 
 	if len(args) != 1 {
-		jsonResp := "{\"error\":\"Incorrect number of arguments\"}"
+		jsonResp := "{\"cc_error\":\"Incorrect number of arguments\"}"
 		return shim.Error(jsonResp)
 	}
 	if args[0] == "" {
-		jsonResp := "{\"error\":\"Arguments is nil\"}"
+		jsonResp := "{\"cc_error\":\"Arguments is nil\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -172,11 +172,11 @@ func (t *MsisdnChaincode) getMsisdnHistory(stub shim.ChaincodeStubInterface, arg
 	var err error
 
 	if len(args) != 1 {
-		jsonResp := "{\"error\":\"Incorrect number of arguments\"}"
+		jsonResp := "{\"cc_error\":\"Incorrect number of arguments\"}"
 		return shim.Error(jsonResp)
 	}
 	if args[0] == "" {
-		jsonResp := "{\"error\":\"Arguments is nil\"}"
+		jsonResp := "{\"cc_error\":\"Arguments is nil\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -210,7 +210,7 @@ func (t *MsisdnChaincode) getMsisdnHistory(stub shim.ChaincodeStubInterface, arg
 
 	bytesData, err := json.Marshal(histories)
 	if err != nil {
-		jsonResp := "{\"error\":\"json error\"}"
+		jsonResp := "{\"cc_error\":\"json cc_error\"}"
 		return shim.Error(jsonResp)
 	}
 	return shim.Success(bytesData)
@@ -222,11 +222,11 @@ func (t *MsisdnChaincode) assetInfo(stub shim.ChaincodeStubInterface, args []str
 	var err error
 
 	if len(args) != 1 {
-		jsonResp := "{\"error\":\"Incorrect number of arguments\"}"
+		jsonResp := "{\"cc_error\":\"Incorrect number of arguments\"}"
 		return shim.Error(jsonResp)
 	}
 	if args[0] == "" {
-		jsonResp := "{\"error\":\"Arguments is nil\"}"
+		jsonResp := "{\"cc_error\":\"Arguments is nil\"}"
 		return shim.Error(jsonResp)
 	}
 
