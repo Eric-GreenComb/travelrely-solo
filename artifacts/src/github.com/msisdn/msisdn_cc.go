@@ -55,6 +55,10 @@ func (t *MsisdnChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		// msisdn_state : msisdn
 		return t.msisdnState(stub, args)
 	}
+	if function == "msisdn_states" {
+		// msisdn_states : msisdns +8613810167616,+8613810167616
+		return t.msisdnStates(stub, args)
+	}
 	if function == "get_msisdn_history" {
 		// get_msisdn_history : msisdn
 		return t.getMsisdnHistory(stub, args)

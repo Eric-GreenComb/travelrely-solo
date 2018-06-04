@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/hyperledger/fabric/core/chaincode/shim"
@@ -164,6 +165,42 @@ func (t *MsisdnChaincode) msisdnState(stub shim.ChaincodeStubInterface, args []s
 		return shim.Success(nil)
 	}
 	return shim.Success(_avalBytes)
+}
+
+// Query callback representing the query of a chaincode
+func (t *MsisdnChaincode) msisdnStates(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+
+	var err error
+
+	if len(args) != 1 {
+		jsonResp := "{\"cc_error\":\"Incorrect number of arguments\"}"
+		return shim.Error(jsonResp)
+	}
+	if args[0] == "" {
+		jsonResp := "{\"cc_error\":\"Arguments is nil\"}"
+		return shim.Error(jsonResp)
+	}
+
+	_msisdns := strings.Split(args[0], ",")
+
+	var objs []string
+
+	for _, _msisdn := range _msisdns {
+		_keyM := t.generateMsisdnKey(_msisdn)
+		_avalBytes, err := stub.GetState(_keyM)
+		if err != nil {
+			objs = append(objs, "")
+			continue
+		}
+		objs = append(objs, string(_avalBytes))
+	}
+
+	_json, err := json.Marshal(objs)
+	if err != nil {
+		jsonResp := "{\"error\":\"json marshal error\"}"
+		return shim.Error(jsonResp)
+	}
+	return shim.Success(_json)
 }
 
 // Query callback representing the query of a chaincode
