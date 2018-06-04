@@ -131,7 +131,7 @@ func (t *MsisdnChaincode) unsubscribe(stub shim.ChaincodeStubInterface, args []s
 	_Asset.Status = 0
 	_bytesA, err := json.Marshal(_Asset)
 
-	_keyA := t.generateAssetKey(msisdn)
+	_keyA := t.generateAssetKey(assetID)
 	err = stub.PutState(_keyA, _bytesA)
 	if err != nil {
 		jsonResp := "{\"cc_error\":\"PutState cc_error\"}"
