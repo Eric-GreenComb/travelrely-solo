@@ -91,47 +91,47 @@ var invokeChaincode = async function (peerNames, channelName, chaincodeName, fcn
 			var promises = [];
 			// wait for the channel-based event hub to tell us
 			// that the commit was good or bad on each peer in our organization
-			// let event_hubs = channel.getChannelEventHubsForOrg();
-			// event_hubs.forEach((eh) => {
-			// 	logger.debug('invokeEventPromise - setting up event');
-			// 	let invokeEventPromise = new Promise((resolve, reject) => {
-			// 		let event_timeout = setTimeout(() => {
-			// 			let message = 'REQUEST_TIMEOUT:' + eh.getPeerAddr();
-			// 			logger.error(message);
-			// 			eh.disconnect();
-			// 		}, 3000);
-			// 		eh.registerTxEvent(tx_id_string, (tx, code, block_num) => {
-			// 				logger.info('The chaincode invoke chaincode transaction has been committed on peer %s', eh.getPeerAddr());
-			// 				logger.info('Transaction %s has status of %s in blocl %s', tx, code, block_num);
-			// 				clearTimeout(event_timeout);
+			let event_hubs = channel.getChannelEventHubsForOrg();
+			event_hubs.forEach((eh) => {
+				logger.debug('invokeEventPromise - setting up event');
+				let invokeEventPromise = new Promise((resolve, reject) => {
+					let event_timeout = setTimeout(() => {
+						let message = 'REQUEST_TIMEOUT:' + eh.getPeerAddr();
+						logger.error(message);
+						eh.disconnect();
+					}, 3000);
+					eh.registerTxEvent(tx_id_string, (tx, code, block_num) => {
+							logger.info('The chaincode invoke chaincode transaction has been committed on peer %s', eh.getPeerAddr());
+							logger.info('Transaction %s has status of %s in blocl %s', tx, code, block_num);
+							clearTimeout(event_timeout);
 
-			// 				if (code !== 'VALID') {
-			// 					let message = util.format('The invoke chaincode transaction was invalid, code:%s', code);
-			// 					logger.error(message);
-			// 					reject(new Error(message));
-			// 				} else {
-			// 					let message = 'The invoke chaincode transaction was valid.';
-			// 					logger.info(message);
-			// 					resolve(message);
-			// 				}
-			// 			}, (err) => {
-			// 				clearTimeout(event_timeout);
-			// 				logger.error(err);
-			// 				reject(err);
-			// 			},
-			// 			// the default for 'unregister' is true for transaction listeners
-			// 			// so no real need to set here, however for 'disconnect'
-			// 			// the default is false as most event hubs are long running
-			// 			// in this use case we are using it only once
-			// 			{
-			// 				unregister: true,
-			// 				disconnect: true
-			// 			}
-			// 		);
-			// 		eh.connect();
-			// 	});
-			// 	promises.push(invokeEventPromise);
-			// });
+							if (code !== 'VALID') {
+								let message = util.format('The invoke chaincode transaction was invalid, code:%s', code);
+								logger.error(message);
+								reject(new Error(message));
+							} else {
+								let message = 'The invoke chaincode transaction was valid.';
+								logger.info(message);
+								resolve(message);
+							}
+						}, (err) => {
+							clearTimeout(event_timeout);
+							logger.error(err);
+							reject(err);
+						},
+						// the default for 'unregister' is true for transaction listeners
+						// so no real need to set here, however for 'disconnect'
+						// the default is false as most event hubs are long running
+						// in this use case we are using it only once
+						{
+							unregister: true,
+							disconnect: true
+						}
+					);
+					eh.connect();
+				});
+				promises.push(invokeEventPromise);
+			});
 
 			var orderer_request = {
 				txId: tx_id,
