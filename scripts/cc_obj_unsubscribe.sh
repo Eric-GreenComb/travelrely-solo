@@ -4,7 +4,7 @@ TRX_ID=$(curl -s -X POST \
   http://localhost:4000/channels/mychannel/chaincodes/msisdn \
   -H "content-type: application/json" \
   -d '{
-	"peers": ["peer0.org1.example.com"],
+	"peers": ["peer0.org1.travelrely.com"],
 	"fcn":"unsubscribe",
 	"args":["13810167616","uuid1234","bcuser_id","bcuser_key"],
   "username":"admin",
