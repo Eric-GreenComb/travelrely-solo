@@ -134,12 +134,12 @@ function shutdownNet() {
 	dkrm
 
 	#Cleanup the stores
-	rm -rf ./fabric-client-kv-org*
+	rm -rf ./tmp/keystore/fabric-client-kv-org*
 
 	echo y | docker network prune
 	# cleanup the material
 	printf "\n======================= CLEANINGUP ARTIFACTS ====================\n\n"
-	rm -rf /tmp/fabric-client-kv-org*
+	rm -rf ./tmp/tmp/fabric-client-kv-org*
 
 }
 

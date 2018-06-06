@@ -10,7 +10,6 @@ echo
 echo "ORG1 token is $ORG1_TOKEN"
 echo
 
-
 echo "POST request Enroll on Org2 ..."
 echo
 ORG2_TOKEN=$(curl -s -X POST \
@@ -23,7 +22,6 @@ echo
 echo "ORG2 token is $ORG2_TOKEN"
 echo
 
-echo
 echo "POST request Enroll on Org3 ..."
 echo
 ORG3_TOKEN=$(curl -s -X POST \
