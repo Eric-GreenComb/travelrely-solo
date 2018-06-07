@@ -76,18 +76,18 @@ cd script
 
 sudo docker-compose up --no-deps ca.org1.travelrely.com orderer.travelrely.com peer0.org1.travelrely.com
 
-sudo docker-compose up --no-deps ca.org1.travelrely.com orderer.travelrely.com peer0.org1.travelrely.com -d
+sudo docker-compose up -d --no-deps ca.org1.travelrely.com orderer.travelrely.com peer0.org1.travelrely.com
 
 - 115.28.51.50
 
 sudo docker-compose up --no-deps ca.org2.travelrely.com peer0.org2.travelrely.com
 
-sudo docker-compose up --no-deps ca.org2.travelrely.com peer0.org2.travelrely.com -d
+sudo docker-compose up -d --no-deps ca.org2.travelrely.com peer0.org2.travelrely.com
 
 - 118.190.137.46
 
 sudo docker-compose up --no-deps ca.org3.travelrely.com peer0.org3.travelrely.com
 
-sudo docker-compose up --no-deps ca.org3.travelrely.com peer0.org3.travelrely.com -d
+sudo docker-compose up -d --no-deps ca.org3.travelrely.com peer0.org3.travelrely.com
 
 sudo docker rm $(sudo docker ps -aq)
