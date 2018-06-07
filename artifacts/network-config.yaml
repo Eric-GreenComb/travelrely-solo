@@ -151,7 +151,7 @@ organizations:
 #
 orderers:
   orderer.travelrely.com:
-    url: grpcs://localhost:7050
+    url: grpcs://10.66.181.165:7050
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
@@ -169,10 +169,10 @@ orderers:
 peers:
   peer0.org1.travelrely.com:
     # this URL is used to send endorsement and query requests
-    url: grpcs://localhost:7051
+    url: grpcs://10.66.181.165:7051
 
     # this URL is used to connect the EventHub and registering event listeners
-    eventUrl: grpcs://localhost:7053
+    eventUrl: grpcs://10.66.181.165:7053
 
     grpcOptions:
       ssl-target-name-override: peer0.org1.travelrely.com
@@ -180,16 +180,16 @@ peers:
       path: artifacts/channel/crypto-config/peerOrganizations/org1.travelrely.com/peers/peer0.org1.travelrely.com/tls/ca.crt
 
   peer0.org2.travelrely.com:
-    url: grpcs://localhost:8051
-    eventUrl: grpcs://localhost:8053
+    url: grpcs://10.66.182.46:7051
+    eventUrl: grpcs://10.66.182.46:7053
     grpcOptions:
       ssl-target-name-override: peer0.org2.travelrely.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org2.travelrely.com/peers/peer0.org2.travelrely.com/tls/ca.crt
 
   peer0.org3.travelrely.com:
-    url: grpcs://localhost:9051
-    eventUrl: grpcs://localhost:9053
+    url: grpcs://10.30.181.162:7051
+    eventUrl: grpcs://10.30.181.162:7053
     grpcOptions:
       ssl-target-name-override: peer0.org3.travelrely.com
     tlsCACerts:
@@ -202,7 +202,7 @@ peers:
 #
 certificateAuthorities:
   ca-org1:
-    url: https://localhost:7054
+    url: https://10.66.181.165:7054
     # the properties specified under this object are passed to the 'http' client verbatim when
     # making the request to the Fabric-CA server
     httpOptions:
@@ -219,7 +219,7 @@ certificateAuthorities:
     caName: ca-org1
 
   ca-org2:
-    url: https://localhost:8054
+    url: https://10.66.182.46:7054
     httpOptions:
       verify: false
     tlsCACerts:
@@ -231,7 +231,7 @@ certificateAuthorities:
     caName: ca-org2
 
   ca-org3:
-    url: https://localhost:9054
+    url: https://10.30.181.162:7054
     httpOptions:
       verify: false
     tlsCACerts:

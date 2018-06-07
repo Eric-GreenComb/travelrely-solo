@@ -58,12 +58,36 @@ cd script
 
 ./cc_obj_query.sh
 
-## 访问URL
+## 启动多节点
 
-1. Health
+### 节点
 
-    [http://localhost:4000/health](http://localhost:4000/health)
+114.215.82.68(外) 10.66.181.165（内） ca1,order,org1
 
-2. Query for Channel Height
+115.28.51.50(外) 10.66.182.46（内） ca2,org2
 
-    http://localhost:4000/channels/mychannel/height?peer=peer0.org1.example.com&username=admin&orgname=Org1
+118.190.137.46(外) 10.30.181.162（内） ca3,org3
+
+### start
+
+进入artifacts目录
+
+- 114.215.82.68
+
+sudo docker-compose up --no-deps ca.org1.travelrely.com orderer.travelrely.com peer0.org1.travelrely.com
+
+sudo docker-compose up --no-deps ca.org1.travelrely.com orderer.travelrely.com peer0.org1.travelrely.com -d
+
+- 115.28.51.50
+
+sudo docker-compose up --no-deps ca.org2.travelrely.com peer0.org2.travelrely.com
+
+sudo docker-compose up --no-deps ca.org2.travelrely.com peer0.org2.travelrely.com -d
+
+- 118.190.137.46
+
+sudo docker-compose up --no-deps ca.org3.travelrely.com peer0.org3.travelrely.com
+
+sudo docker-compose up --no-deps ca.org3.travelrely.com peer0.org3.travelrely.com -d
+
+sudo docker rm $(sudo docker ps -aq)

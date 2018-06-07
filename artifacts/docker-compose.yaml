@@ -84,11 +84,11 @@ services:
     ports:
       - 7050:7050
     volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/travelrely.com/orderers/orderer.travelrely.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.travelrely.com/peers/peer0.org1.travelrely.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.travelrely.com/peers/peer0.org2.travelrely.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/crypto-config/peerOrganizations/org3.travelrely.com/peers/peer0.org3.travelrely.com/:/etc/hyperledger/crypto/peerOrg3
+      - ./channel:/etc/hyperledger/configtx
+      - ./channel/crypto-config/ordererOrganizations/travelrely.com/orderers/orderer.travelrely.com/:/etc/hyperledger/crypto/orderer
+      - ./channel/crypto-config/peerOrganizations/org1.travelrely.com/peers/peer0.org1.travelrely.com/:/etc/hyperledger/crypto/peerOrg1
+      - ./channel/crypto-config/peerOrganizations/org2.travelrely.com/peers/peer0.org2.travelrely.com/:/etc/hyperledger/crypto/peerOrg2
+      - ./channel/crypto-config/peerOrganizations/org3.travelrely.com/peers/peer0.org3.travelrely.com/:/etc/hyperledger/crypto/peerOrg3
 
   peer0.org1.travelrely.com:
     container_name: peer0.org1.travelrely.com
@@ -104,9 +104,11 @@ services:
       - 7051:7051
       - 7053:7053
     volumes:
-        - ./channel/crypto-config/peerOrganizations/org1.travelrely.com/peers/peer0.org1.travelrely.com/:/etc/hyperledger/crypto/peer
+      - ./channel/crypto-config/peerOrganizations/org1.travelrely.com/peers/peer0.org1.travelrely.com/:/etc/hyperledger/crypto/peer
     depends_on:
       - orderer.travelrely.com
+    extra_hosts:
+      - "orderer.travelrely.com:10.66.181.165"      
 
   peer0.org2.travelrely.com:
     container_name: peer0.org2.travelrely.com
@@ -119,12 +121,14 @@ services:
       - CORE_PEER_LOCALMSPID=Org2MSP
       - CORE_PEER_ADDRESS=peer0.org2.travelrely.com:7051
     ports:
-      - 8051:7051
-      - 8053:7053
+      - 7051:7051
+      - 7053:7053
     volumes:
-        - ./channel/crypto-config/peerOrganizations/org2.travelrely.com/peers/peer0.org2.travelrely.com/:/etc/hyperledger/crypto/peer
+      - ./channel/crypto-config/peerOrganizations/org2.travelrely.com/peers/peer0.org2.travelrely.com/:/etc/hyperledger/crypto/peer
     depends_on:
       - orderer.travelrely.com
+    extra_hosts:
+      - "orderer.travelrely.com:10.66.181.165"
 
   peer0.org3.travelrely.com:
     container_name: peer0.org3.travelrely.com
@@ -137,10 +141,11 @@ services:
       - CORE_PEER_LOCALMSPID=Org3MSP
       - CORE_PEER_ADDRESS=peer0.org3.travelrely.com:7051
     ports:
-      - 9051:7051
-      - 9053:7053
+      - 7051:7051
+      - 7053:7053
     volumes:
-        - ./channel/crypto-config/peerOrganizations/org3.travelrely.com/peers/peer0.org3.travelrely.com/:/etc/hyperledger/crypto/peer
+      - ./channel/crypto-config/peerOrganizations/org3.travelrely.com/peers/peer0.org3.travelrely.com/:/etc/hyperledger/crypto/peer
     depends_on:
       - orderer.travelrely.com
-
+    extra_hosts:
+      - "orderer.travelrely.com:10.66.181.165"            
