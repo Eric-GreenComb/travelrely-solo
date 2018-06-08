@@ -62,7 +62,7 @@ cd script
 
 ### 节点
 
-114.215.82.68(外) 10.66.181.165（内） ca1,order,org1
+118.190.166.136(外) 10.30.183.125（内） ca1,order,org1
 
 115.28.51.50(外) 10.66.182.46（内） ca2,org2
 
@@ -72,9 +72,11 @@ cd script
 
 进入artifacts目录
 
-- 114.215.82.68
+- 118.190.166.136
 
 sudo docker-compose up --no-deps ca.org1.travelrely.com orderer.travelrely.com peer0.org1.travelrely.com
+
+sudo docker-compose down
 
 sudo docker-compose up -d --no-deps ca.org1.travelrely.com orderer.travelrely.com peer0.org1.travelrely.com
 
@@ -82,11 +84,15 @@ sudo docker-compose up -d --no-deps ca.org1.travelrely.com orderer.travelrely.co
 
 sudo docker-compose up --no-deps ca.org2.travelrely.com peer0.org2.travelrely.com
 
+sudo docker-compose down
+
 sudo docker-compose up -d --no-deps ca.org2.travelrely.com peer0.org2.travelrely.com
 
 - 118.190.137.46
 
 sudo docker-compose up --no-deps ca.org3.travelrely.com peer0.org3.travelrely.com
+
+sudo docker-compose down
 
 sudo docker-compose up -d --no-deps ca.org3.travelrely.com peer0.org3.travelrely.com
 

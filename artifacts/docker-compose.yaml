@@ -108,7 +108,7 @@ services:
     depends_on:
       - orderer.travelrely.com
     extra_hosts:
-      - "orderer.travelrely.com:10.66.181.165"      
+      - "orderer.travelrely.com:10.30.183.125"      
 
   peer0.org2.travelrely.com:
     container_name: peer0.org2.travelrely.com
@@ -128,7 +128,7 @@ services:
     depends_on:
       - orderer.travelrely.com
     extra_hosts:
-      - "orderer.travelrely.com:10.66.181.165"
+      - "orderer.travelrely.com:10.30.183.125"
 
   peer0.org3.travelrely.com:
     container_name: peer0.org3.travelrely.com
@@ -148,4 +148,4 @@ services:
     depends_on:
       - orderer.travelrely.com
     extra_hosts:
-      - "orderer.travelrely.com:10.66.181.165"            
+      - "orderer.travelrely.com:10.30.183.125"            

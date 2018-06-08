@@ -151,7 +151,7 @@ organizations:
 #
 orderers:
   orderer.travelrely.com:
-    url: grpcs://10.66.181.165:7050
+    url: grpcs://10.30.183.125:7050
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
@@ -169,10 +169,10 @@ orderers:
 peers:
   peer0.org1.travelrely.com:
     # this URL is used to send endorsement and query requests
-    url: grpcs://10.66.181.165:7051
+    url: grpcs://10.30.183.125:7051
 
     # this URL is used to connect the EventHub and registering event listeners
-    eventUrl: grpcs://10.66.181.165:7053
+    eventUrl: grpcs://10.30.183.125:7053
 
     grpcOptions:
       ssl-target-name-override: peer0.org1.travelrely.com
@@ -202,7 +202,7 @@ peers:
 #
 certificateAuthorities:
   ca-org1:
-    url: https://10.66.181.165:7054
+    url: https://10.30.183.125:7054
     # the properties specified under this object are passed to the 'http' client verbatim when
     # making the request to the Fabric-CA server
     httpOptions:
